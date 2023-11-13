@@ -52,7 +52,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, FocusLis
     // Botones
     JButton aceptar = new JButton("Aceptar");
 
-    public VentanaPrincipal() throws IOException {
+    public VentanaPrincipal() {
         c = getContentPane();
 
         // Panel Norte
@@ -147,7 +147,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, FocusLis
 
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         VentanaPrincipal vp = new VentanaPrincipal();
         vp.setVisible(true);
         vp.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -156,7 +156,7 @@ public class VentanaPrincipal extends JFrame implements ActionListener, FocusLis
 
     private void SetImageLabel(JLabel labelName, String root){
         ImageIcon image = new ImageIcon(root);
-        Icon icono = new ImageIcon(image.getImage().getScaledInstance(500, 1000, Image.SCALE_REPLICATE));
+        Icon icono = new ImageIcon(image.getImage().getScaledInstance(500, 1000, Image.SCALE_DEFAULT));
         labelName.setIcon(icono);
         this.repaint();
     }
