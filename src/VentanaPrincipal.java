@@ -1,5 +1,12 @@
+import LowCost.LowCost_ClienteClub;
+import LowCost.LowCost_ClienteEsporadico;
+import LowCost.LowCost_ClientePremium;
+
+import Hipermercado.Hipermercado_ClienteEsporadico;
+import Hipermercado.Hipermercado_ClienteClub;
+import Hipermercado.Hipermercado_ClientePremium;
+
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,6 +44,10 @@ public class VentanaPrincipal extends JFrame implements ActionListener, FocusLis
         JComboBox<String> tipoServicios = new JComboBox<>(servicies);
 
     JPanel panelInferior;
+        JLabel lowCost = new JLabel();
+        JLabel hipermercado = new JLabel();
+        JLabel gourmet = new JLabel();
+
 
     // Botones
     JButton aceptar = new JButton("Aceptar");
@@ -56,6 +67,8 @@ public class VentanaPrincipal extends JFrame implements ActionListener, FocusLis
         // nombreUsuario.setToolTipText("Nombre del usuario");
         panelCentral.setLayout(new GridLayout());
         panelCentral.setBackground(fondoPanelCentral);
+        aceptar.addActionListener(this);
+
         panelCentral.add(labelNombreUsuario);
         panelCentral.add(nombreUsuario);
         panelCentral.add(labelTipoUsuario);
@@ -65,18 +78,52 @@ public class VentanaPrincipal extends JFrame implements ActionListener, FocusLis
 
         // Panel Inferior
         panelInferior = new JPanel();
+        this.setLocationRelativeTo(this);
+        SetImageLabel(lowCost, "./cenaLowCost.jpg");
+        SetImageLabel(hipermercado, "./cesta.jpg");
+        SetImageLabel(gourmet, "./cenaGourmet.jpg");
+
+
+        lowCost.setPreferredSize(new Dimension(400, 100));
+
+        panelInferior.add(lowCost);
         // Añadir paneles para mostrar
         panelNorte.add(empresaLelia);
         panelCentral.add(aceptar);
         c.add(panelNorte, BorderLayout.NORTH);
         c.add(panelCentral, BorderLayout.CENTER);
         c.add(panelInferior, BorderLayout.SOUTH);
-
     }
 
 
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
+        String users = tipoUsuarios.getSelectedItem().toString();
+        String services = tipoServicios.getSelectedItem().toString();
+
+        if(actionEvent.getSource() == aceptar){
+            // Condicionales de Low Cost
+            if(users.equalsIgnoreCase("Cliente esporádico") && services.equalsIgnoreCase("Low Cost")){
+                LowCost_ClienteEsporadico vLow = new LowCost_ClienteEsporadico();
+            }
+            if(users.equalsIgnoreCase("Cliente Club") && services.equalsIgnoreCase("Low Cost")){
+                LowCost_ClienteClub vLow = new LowCost_ClienteClub();
+            }
+            if(users.equalsIgnoreCase("Cliente Premium") && services.equalsIgnoreCase("Low Cost")){
+                LowCost_ClientePremium vLow = new LowCost_ClientePremium();
+            }
+
+            // Condicionales de Hipermercados
+            if(users.equalsIgnoreCase("Cliente esporádico") && services.equalsIgnoreCase("Hipermercado")){
+                Hipermercado_ClienteEsporadico vLow = new Hipermercado_ClienteEsporadico();
+            }
+            if(users.equalsIgnoreCase("Cliente Club") && services.equalsIgnoreCase("Hipermercado")){
+                Hipermercado_ClienteClub vLow = new Hipermercado_ClienteClub();
+            }
+            if(users.equalsIgnoreCase("Cliente Premium") && services.equalsIgnoreCase("Hipermercado")){
+                Hipermercado_ClientePremium vLow = new Hipermercado_ClientePremium();
+            }
+        }
     }
 
     @Override
@@ -94,5 +141,12 @@ public class VentanaPrincipal extends JFrame implements ActionListener, FocusLis
         vp.setVisible(true);
         vp.setDefaultCloseOperation(EXIT_ON_CLOSE);
         vp.setSize(500, 500);
+    }
+
+    private void SetImageLabel(JLabel labelName, String root){
+        ImageIcon image = new ImageIcon(root);
+        Icon icono = new ImageIcon(image.getImage().getScaledInstance(500, 1000, Image.SCALE_REPLICATE));
+        labelName.setIcon(icono);
+        this.repaint();
     }
 }
