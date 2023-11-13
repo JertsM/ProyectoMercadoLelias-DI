@@ -8,6 +8,8 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     GridBagLayout layout1;
     GridBagConstraints constraints1;
     JPanel panelNorte;
+    JPanel subPanelNorteCentro;
+    JPanel subPanelNorteEste;
 
     Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 40);
     Color fondoEmpresaLelia = new Color(103, 224, 93);
@@ -23,11 +25,23 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         layout1 = new GridBagLayout();
         panelNorte.setLayout(layout1);
         constraints1 = new GridBagConstraints();
+        panelNorte.setBackground(fondoEmpresaLelia);
+
+        // SubPanelCentral
+        subPanelNorteCentro = new JPanel();
+        nombreUsuario = new JTextField(10);
+        constraints1.gridx = 0;
+        constraints1.gridy = 0;
+        constraints1.anchor = GridBagConstraints.CENTER;
 
         // Label de la cabecera
         cabecera = new JLabel("LeliaMerca");
         cabecera.setFont(fuenteCabecera);
         cabecera.setForeground(Color.WHITE);
+        subPanelNorteCentro.add(cabecera);
+
+        // SubPanel Este
+        subPanelNorteEste = new JPanel();
 
         // Label del input del nombre de usuario
         inputNombre = new JLabel("Nombre de usuario");
@@ -35,13 +49,7 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         inputNombre.setForeground(Color.WHITE);
 
         // Cuadro de texto del nombre de usuario
-        nombreUsuario = new JTextField(10);
-        panelNorte.setBackground(fondoEmpresaLelia);
 
-        constraints1.gridx = 0;
-        constraints1.gridy = 0;
-        constraints1.anchor = GridBagConstraints.CENTER;
-        panelNorte.add(cabecera);
 
         constraints1 = new GridBagConstraints();
 
@@ -50,8 +58,12 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         constraints1.gridwidth = 1;
         constraints1.gridheight = 1;
         constraints1.anchor = GridBagConstraints.EAST;
-        panelNorte.add(inputNombre);
-        panelNorte.add(nombreUsuario);
+        subPanelNorteEste.add(inputNombre);
+        subPanelNorteEste.add(nombreUsuario);
+
+        // Adición de paneles
+        panelNorte.add(subPanelNorteCentro);
+        panelNorte.add(subPanelNorteEste);
 
         c.add(panelNorte);
     }
