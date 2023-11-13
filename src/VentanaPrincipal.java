@@ -123,6 +123,17 @@ public class VentanaPrincipal extends JFrame implements ActionListener, FocusLis
             if(users.equalsIgnoreCase("Cliente Premium") && services.equalsIgnoreCase("Hipermercado")){
                 Hipermercado_ClientePremium vLow = new Hipermercado_ClientePremium();
             }
+
+            // Condicionales de Gourmet
+            if(users.equalsIgnoreCase("Cliente esporádico") && services.equalsIgnoreCase("Gourmet")){
+                Hipermercado_ClienteEsporadico vLow = new Hipermercado_ClienteEsporadico();
+            }
+            if(users.equalsIgnoreCase("Cliente Club") && services.equalsIgnoreCase("Gourmet")){
+                Hipermercado_ClienteClub vLow = new Hipermercado_ClienteClub();
+            }
+            if(users.equalsIgnoreCase("Cliente Premium") && services.equalsIgnoreCase("Gourmet")){
+                Hipermercado_ClientePremium vLow = new Hipermercado_ClientePremium();
+            }
         }
     }
 
