@@ -3,76 +3,80 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static java.awt.GridBagConstraints.CENTER;
+import static java.awt.GridBagConstraints.REMAINDER;
+
 public class VentanaPrincipal2 extends JFrame implements ActionListener {
+
     Container c;
-    GridBagLayout layout1;
-    GridBagConstraints constraints1;
-    JPanel panelNorte;
-    JPanel subPanelNorteCentro;
-    JPanel subPanelNorteEste;
 
-    Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 40);
-    Color fondoEmpresaLelia = new Color(103, 224, 93);
+    // GridBagConstraint
+    GridBagConstraints gbc = new GridBagConstraints();
+    GridBagLayout layout = new GridBagLayout();
+
+    // Paneles
+    JPanel panel;
+    JPanel panelTitulo;
+    JPanel panelTitulo2;
+    JPanel panelTitulo3;
+    JPanel panelUsuario;
+
+    // Panel titulo
     JLabel cabecera;
+    JLabel cabecera2;
 
-    JLabel inputNombre;
-    JTextField nombreUsuario;
-    JButton inciarSesion;
+    // Panel usuario
+    JTextField cuadroUser;
+    JLabel user;
+
+    // Colores y fuentes
+    Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 40);
+    Font fuenteCabeceraMenor = new Font("Maiandra GD", Font.BOLD, 15);
+    Color fondoEmpresaLelia = new Color(103, 224, 93);
+
     public VentanaPrincipal2() {
         c = getContentPane();
-        // Panel norte
-        panelNorte = new JPanel();
-        layout1 = new GridBagLayout();
-        panelNorte.setLayout(layout1);
-        constraints1 = new GridBagConstraints();
-        panelNorte.setBackground(fondoEmpresaLelia);
 
-        // SubPanelCentral
-        subPanelNorteCentro = new JPanel();
-        nombreUsuario = new JTextField(10);
-        constraints1.gridx = 0;
-        constraints1.gridy = 0;
-        constraints1.anchor = GridBagConstraints.CENTER;
+        panel = new JPanel(layout);
+        panel.setBackground(fondoEmpresaLelia);
 
-        // Label de la cabecera
-        cabecera = new JLabel("LeliaMerca");
+        panelTitulo = new JPanel();
+        panelTitulo.setBackground(fondoEmpresaLelia);
+        cabecera = new JLabel("                                    LeliaMerca");
+        cabecera2 = new JLabel("                                                                                                                                                   ");
         cabecera.setFont(fuenteCabecera);
-        cabecera.setForeground(Color.WHITE);
-        subPanelNorteCentro.add(cabecera);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 1;
+        gbc.anchor = CENTER;
+        panelTitulo.add(cabecera, gbc);
+        panelTitulo.add(cabecera2, gbc);
 
-        // SubPanel Este
-        subPanelNorteEste = new JPanel();
+        panelUsuario = new JPanel();
+        panelUsuario.setBackground(fondoEmpresaLelia);
 
-        // Label del input del nombre de usuario
-        inputNombre = new JLabel("Nombre de usuario");
-        inputNombre.setFont(new Font("Maiandra GD", Font.BOLD, 20));
-        inputNombre.setForeground(Color.WHITE);
+        user = new JLabel("Usuario:");
+        user.setFont(fuenteCabeceraMenor);
+        cuadroUser = new JTextField(12);
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.gridwidth = REMAINDER;
+        panelUsuario.add(user, gbc);
+        panelUsuario.add(cuadroUser, gbc);
 
-        // Cuadro de texto del nombre de usuario
+        panel.add(panelTitulo);
+        panel.add(panelUsuario);
 
+        c.add(panel);
 
-        constraints1 = new GridBagConstraints();
-
-        constraints1.gridx = 0;
-        constraints1.gridy = 0;
-        constraints1.gridwidth = 1;
-        constraints1.gridheight = 1;
-        constraints1.anchor = GridBagConstraints.EAST;
-        subPanelNorteEste.add(inputNombre);
-        subPanelNorteEste.add(nombreUsuario);
-
-        // Adición de paneles
-        panelNorte.add(subPanelNorteCentro);
-        panelNorte.add(subPanelNorteEste);
-
-        c.add(panelNorte);
     }
 
     public static void main(String[] args) {
         VentanaPrincipal2 mv = new VentanaPrincipal2();
         mv.setVisible(true);
         mv.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        mv.setSize(1000, 1000);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        mv.setSize(screenSize.width, screenSize.height);
     }
 
     @Override
