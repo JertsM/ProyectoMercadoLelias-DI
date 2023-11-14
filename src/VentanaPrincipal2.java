@@ -13,13 +13,14 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     // GridBagConstraint
     GridBagConstraints gbc = new GridBagConstraints();
     GridBagLayout layout = new GridBagLayout();
+    GridLayout layoutGrid = new GridLayout();
 
     // Paneles
     JPanel panel;
+    JPanel panel2;
     JPanel panelTitulo;
-    JPanel panelTitulo2;
-    JPanel panelTitulo3;
     JPanel panelUsuario;
+    JPanel panelSuperior;
 
     // Panel titulo
     JLabel cabecera;
@@ -28,10 +29,11 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     // Panel usuario
     JTextField cuadroUser;
     JLabel user;
+    JButton btnUser;
 
     // Colores y fuentes
     Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 40);
-    Font fuenteCabeceraMenor = new Font("Maiandra GD", Font.BOLD, 15);
+    Font fuenteCabeceraMenor = new Font("Maiandra GD", Font.BOLD, 17);
     Color fondoEmpresaLelia = new Color(103, 224, 93);
 
     public VentanaPrincipal2() {
@@ -40,10 +42,13 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         panel = new JPanel(layout);
         panel.setBackground(fondoEmpresaLelia);
 
+        panelSuperior = new JPanel(layoutGrid);
+
         panelTitulo = new JPanel();
         panelTitulo.setBackground(fondoEmpresaLelia);
-        cabecera = new JLabel("                                    LeliaMerca");
-        cabecera2 = new JLabel("                                                                                                                                                   ");
+        cabecera = new JLabel("                                                   LeliaMerca");
+        cabecera.setForeground(Color.WHITE);
+        cabecera2 = new JLabel("                                                                                                                                                             ");
         cabecera.setFont(fuenteCabecera);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -56,18 +61,33 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         panelUsuario.setBackground(fondoEmpresaLelia);
 
         user = new JLabel("Usuario:");
+        user.setForeground(Color.WHITE);
         user.setFont(fuenteCabeceraMenor);
-        cuadroUser = new JTextField(12);
-        gbc.gridx = 2;
+
+        gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.gridwidth = REMAINDER;
+        gbc.gridwidth = 0;
+        gbc.anchor = GridBagConstraints.WEST;
         panelUsuario.add(user, gbc);
+
+        cuadroUser = new JTextField(12);
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
         panelUsuario.add(cuadroUser, gbc);
 
-        panel.add(panelTitulo);
-        panel.add(panelUsuario);
+        btnUser = new JButton("Entrar");
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        panelUsuario.add(btnUser, gbc);
 
-        c.add(panel);
+        panelSuperior.add(panelTitulo);
+        panelSuperior.add(panelUsuario);
+
+        panel.add(panelSuperior);
+
+        c.add(panel, BorderLayout.NORTH);
 
     }
 
