@@ -14,7 +14,6 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
 
     // Layouts
     GridBagLayout layout = new GridBagLayout();
-    GridLayout layoutGrid = new GridLayout(1, 3);  // Modificado para mostrar las imágenes de forma consecutiva
     FlowLayout layoutFlow = new FlowLayout(FlowLayout.CENTER, 0, 0);
 
     JPanel panel;
@@ -22,12 +21,8 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     JPanel panelTitulo;
     JPanel panelUsuario;
     JPanel panelCentral;
-    JPanel panelImgLowCost;
-    JPanel panelImgLHiper;
-    JPanel panelImgGourmet;
 
     JLabel cabecera;
-    JLabel cabecera2;
     JLabel user;
 
     JTextField cuadroUser;
@@ -114,15 +109,18 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         // Agregar una separación entre la parte superior y las imágenes
         panelCentral.add(Box.createRigidArea(new Dimension(0, 20)));
 
-        Image imagenLC = cargarImagen("./cenaLowCost.jpg", 492, 400);
+        Image imagenLC = cargarImagen("./cenaLowCost.jpg", 492);
+        assert imagenLC != null;
         JLabel etiquetaLC = new JLabel(new ImageIcon(imagenLC));
         etiquetaLC.setBorder(BorderFactory.createEmptyBorder()); // Elimina los márgenes
 
-        Image imagenHM = cargarImagen("./cesta.jpg", 530, 400);
+        Image imagenHM = cargarImagen("./cesta.jpg", 530);
+        assert imagenHM != null;
         JLabel etiquetaHM = new JLabel(new ImageIcon(imagenHM));
         etiquetaHM.setBorder(BorderFactory.createEmptyBorder()); // Elimina los márgenes
 
-        Image imagenGM = cargarImagen("./cenaGourmet.jpg", 500, 400);
+        Image imagenGM = cargarImagen("./cenaGourmet.jpg", 500);
+        assert imagenGM != null;
         JLabel etiquetaGM = new JLabel(new ImageIcon(imagenGM));
         etiquetaGM.setBorder(BorderFactory.createEmptyBorder()); // Elimina los márgenes
 
@@ -139,10 +137,10 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         c.add(panelCentral, BorderLayout.CENTER);
     }
 
-    private Image cargarImagen(String ruta, int ancho, int alto) {
+    private Image cargarImagen(String ruta, int ancho) {
         try {
             BufferedImage imagen = ImageIO.read(new File(ruta));
-            Image imagenEscalada = imagen.getScaledInstance(ancho, alto, Image.SCALE_SMOOTH);
+            Image imagenEscalada = imagen.getScaledInstance(ancho, 400, Image.SCALE_SMOOTH);
             return new ImageIcon(imagenEscalada).getImage();
         } catch (IOException e) {
             e.printStackTrace();
