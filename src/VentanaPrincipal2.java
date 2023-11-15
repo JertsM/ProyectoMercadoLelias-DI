@@ -1,3 +1,10 @@
+import Hipermercado.Hipermercado_ClienteClub;
+import Hipermercado.Hipermercado_ClienteEsporadico;
+import Hipermercado.Hipermercado_ClientePremium;
+import LowCost.LowCost_ClienteClub;
+import LowCost.LowCost_ClienteEsporadico;
+import LowCost.LowCost_ClientePremium;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +28,10 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     JPanel panelTitulo;
     JPanel panelUsuario;
     JPanel panelCentral;
+    JPanel panelInferior;
+    JPanel panelPrimerBloque;
+    JPanel panelSegundoBloque;
+    JPanel panelTercerBloque;
 
     JLabel cabecera;
     JLabel user;
@@ -28,10 +39,25 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     JTextField cuadroUser;
     JButton btnUser;
 
+    //Panel Inferior
+    JLabel labelTipoUsuario;
+    JTextField cuadroUsuarios;
+    JLabel labelTipoServicio;
+    JTextField cuadroServicios;
+    JButton btnAceptar;
+
+    // Fuentes y Backgrounds
     Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 40);
     Font fuenteCabeceraMenor = new Font("Maiandra GD", Font.BOLD, 17);
     Color fondoEmpresaLelia = new Color(69, 110, 218);
     Color fondoPagina = new Color(6, 51, 170);
+
+    //  Arrays de opciones
+    String [] users = {"Escoja cliente...", "Cliente esporádico", "Cliente Club", "Cliente Premium"};
+    JComboBox<String> tipoUsers = new JComboBox<>(users);
+
+    String [] servicies = {"Escoja servicio...", "Hipermercado", "Gourmet", "Low Cost"};
+    JComboBox<String> tipoServices = new JComboBox<>(servicies);
 
     public VentanaPrincipal2() {
         c = getContentPane();
@@ -107,17 +133,21 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         panelCentral.setBackground(fondoPagina);
 
         // Agregar una separación entre la parte superior y las imágenes
-        panelCentral.add(Box.createRigidArea(new Dimension(0, 20)));
+        panelCentral.add(Box.createRigidArea(new Dimension(0, 50)));
 
         Image imagenLC = cargarImagen("./cenaLowCost.jpg", 492);
         assert imagenLC != null;
         JLabel etiquetaLC = new JLabel(new ImageIcon(imagenLC));
         etiquetaLC.setBorder(BorderFactory.createEmptyBorder()); // Elimina los márgenes
 
+        panelCentral.add(Box.createRigidArea(new Dimension(0, 50)));
+
         Image imagenHM = cargarImagen("./cesta.jpg", 530);
         assert imagenHM != null;
         JLabel etiquetaHM = new JLabel(new ImageIcon(imagenHM));
         etiquetaHM.setBorder(BorderFactory.createEmptyBorder()); // Elimina los márgenes
+
+        panelCentral.add(Box.createRigidArea(new Dimension(0, 50)));
 
         Image imagenGM = cargarImagen("./cenaGourmet.jpg", 500);
         assert imagenGM != null;
@@ -128,13 +158,55 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         panelCentral.add(etiquetaHM, BorderLayout.CENTER);
         panelCentral.add(etiquetaGM, BorderLayout.EAST);
 
-        // Agregar paneles al contenedor principal
-        c.add(panelSuperior, BorderLayout.NORTH);
-        c.add(panelCentral, BorderLayout.CENTER);
+        // Panel Inferior
+        panelInferior = new JPanel(){
+                @Override
+                protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                // Dibuja el fondo directamente en el JPanel
+                g.setColor(fondoPagina);
+                g.fillRect(0, 0, getWidth(), getHeight());
+            }
+        };
+        panelInferior.setLayout(new GridLayout(2, 1));
+        panelInferior.setBackground(fondoPagina);
+        panelInferior.setOpaque(true);
+
+        panelPrimerBloque = new JPanel();
+        panelPrimerBloque.setBackground(fondoPagina);
+
+        labelTipoUsuario = new JLabel("Escoja el tipo de usuario:");
+        labelTipoUsuario.setForeground(Color.WHITE);
+        labelTipoUsuario.setFont(fuenteCabeceraMenor);
+        cuadroUsuarios = new JTextField(12);
+        cuadroUsuarios.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+        panelPrimerBloque.add(labelTipoUsuario);
+        panelPrimerBloque.add(cuadroUsuarios);
+        panelPrimerBloque.add(tipoUsers);
+
+        labelTipoServicio = new JLabel("Escoja el tipo de servicio:");
+        labelTipoServicio.setForeground(Color.WHITE);
+        labelTipoServicio.setFont(fuenteCabeceraMenor);
+        cuadroServicios = new JTextField(12);
+        cuadroServicios.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
+        panelSegundoBloque = new JPanel();
+        panelSegundoBloque.setBackground(fondoPagina);
+        btnAceptar = new JButton("Aceptar");
+        btnAceptar.addActionListener(this);
+
+        panelSegundoBloque.add(labelTipoServicio);
+        panelSegundoBloque.add(cuadroServicios);
+        panelSegundoBloque.add(tipoServices);
+        panelSegundoBloque.add(btnAceptar);
+
+        panelInferior.add(panelPrimerBloque);
+        panelInferior.add(panelSegundoBloque);
 
         // Agregar paneles al contenedor principal
         c.add(panelSuperior, BorderLayout.NORTH);
         c.add(panelCentral, BorderLayout.CENTER);
+        c.add(panelInferior, BorderLayout.SOUTH);
     }
 
     private Image cargarImagen(String ruta, int ancho) {
@@ -158,6 +230,42 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        String users = tipoUsers.getSelectedItem().toString();
+        String services = tipoServices.getSelectedItem().toString();
 
+        if(e.getSource() == btnAceptar){
+            // Condicionales de Low Cost
+            if(users.equalsIgnoreCase("Cliente esporádico") && services.equalsIgnoreCase("Low Cost")){
+                LowCost_ClienteEsporadico vLow = new LowCost_ClienteEsporadico();
+            }
+            if(users.equalsIgnoreCase("Cliente Club") && services.equalsIgnoreCase("Low Cost")){
+                LowCost_ClienteClub vLow = new LowCost_ClienteClub();
+            }
+            if(users.equalsIgnoreCase("Cliente Premium") && services.equalsIgnoreCase("Low Cost")){
+                LowCost_ClientePremium vLow = new LowCost_ClientePremium();
+            }
+
+            // Condicionales de Hipermercados
+            if(users.equalsIgnoreCase("Cliente esporádico") && services.equalsIgnoreCase("Hipermercado")){
+                Hipermercado_ClienteEsporadico vLow = new Hipermercado_ClienteEsporadico();
+            }
+            if(users.equalsIgnoreCase("Cliente Club") && services.equalsIgnoreCase("Hipermercado")){
+                Hipermercado_ClienteClub vLow = new Hipermercado_ClienteClub();
+            }
+            if(users.equalsIgnoreCase("Cliente Premium") && services.equalsIgnoreCase("Hipermercado")){
+                Hipermercado_ClientePremium vLow = new Hipermercado_ClientePremium();
+            }
+
+            // Condicionales de Gourmet
+            if(users.equalsIgnoreCase("Cliente esporádico") && services.equalsIgnoreCase("Gourmet")){
+                Hipermercado_ClienteEsporadico vLow = new Hipermercado_ClienteEsporadico();
+            }
+            if(users.equalsIgnoreCase("Cliente Club") && services.equalsIgnoreCase("Gourmet")){
+                Hipermercado_ClienteClub vLow = new Hipermercado_ClienteClub();
+            }
+            if(users.equalsIgnoreCase("Cliente Premium") && services.equalsIgnoreCase("Gourmet")){
+                Hipermercado_ClientePremium vLow = new Hipermercado_ClientePremium();
+            }
+        }
     }
 }
