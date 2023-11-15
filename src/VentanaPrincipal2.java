@@ -10,9 +10,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class VentanaPrincipal2 extends JFrame implements ActionListener {
 
@@ -135,7 +138,13 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         Image imagenLC = cargarImagen("./cenaLowCost.jpg", 492);
         assert imagenLC != null;
         JLabel etiquetaLC = new JLabel(new ImageIcon(imagenLC));
-        etiquetaLC.setBorder(BorderFactory.createEmptyBorder()); // Elimina los márgenes
+        etiquetaLC.setBorder(BorderFactory.createEmptyBorder());// Elimina los márgenes
+        etiquetaLC.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                abrirNuevaVentana("cenaLowCost.jpg");
+            }
+        });
 
         panelCentral.add(Box.createRigidArea(new Dimension(0, 50)));
 
@@ -200,6 +209,19 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         c.add(panelInferior, BorderLayout.SOUTH);
     }
 
+    private void abrirNuevaVentana(String nombreImagen) {
+        try {
+            File imagenFile = new File(nombreImagen);
+
+            if (imagenFile.exists()) {
+                Desktop.getDesktop().browse(imagenFile.toURI());
+            } else {
+                System.out.println("La imagen no existe: " + nombreImagen);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
     private Image cargarImagen(String ruta, int ancho) {
         try {
             BufferedImage imagen = ImageIO.read(new File(ruta));
@@ -215,8 +237,8 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         VentanaPrincipal2 mv = new VentanaPrincipal2();
         mv.setVisible(true);
         mv.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        mv.setSize(screenSize.width, screenSize.height);
+
+        mv.setSize(1800, 1000);
     }
 
     @Override

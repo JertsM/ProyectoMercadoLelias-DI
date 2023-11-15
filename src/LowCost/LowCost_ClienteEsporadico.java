@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class LowCost_ClienteEsporadico extends JDialog {
+public class LowCost_ClienteEsporadico extends JFrame {
 
     // Contenedor
     Container c;
@@ -44,7 +44,8 @@ public class LowCost_ClienteEsporadico extends JDialog {
     // Fuentes y backgrounds
     Color fondoEmpresaLelia = new Color(69, 110, 200);
     Color fondoPagina = new Color(6, 51, 170);
-    Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 30);
+    Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 80);
+    Font fuenteDescripciones = new Font("Maiandra GD", Font.BOLD, 30);
 
 
     public LowCost_ClienteEsporadico(){
@@ -78,6 +79,7 @@ public class LowCost_ClienteEsporadico extends JDialog {
         firstDesc.setBackground(fondoEmpresaLelia);
         gbc = new GridBagConstraints();
         salmonDesc = new JLabel("Salmón Skandia: 2.5€");
+        salmonDesc.setFont(fuenteDescripciones);
         salmonDesc.setForeground(Color.WHITE);
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -108,6 +110,7 @@ public class LowCost_ClienteEsporadico extends JDialog {
         gbc = new GridBagConstraints();
         secondDesc.setBackground(fondoEmpresaLelia);
         vinoDesc = new JLabel("Vino Blanco 'Don Bernandino': 3€");
+        vinoDesc.setFont(fuenteDescripciones);
         vinoDesc.setForeground(Color.WHITE);
         gbc.gridx = 1;
         gbc.gridy = 1;
@@ -121,8 +124,8 @@ public class LowCost_ClienteEsporadico extends JDialog {
 
         thirdImg = new JPanel();
         thirdImg.setBackground(fondoEmpresaLelia);
-        gbc.gridx = 2;
-        gbc.gridy = 0;
+        gbc.gridx = 0;
+        gbc.gridy = 2;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.weightx = 0.5;
@@ -138,9 +141,10 @@ public class LowCost_ClienteEsporadico extends JDialog {
         thirdDesc.setBackground(fondoEmpresaLelia);
         gbc = new GridBagConstraints();
         arrozDesc = new JLabel("Arroz SOS: 2€");
+        arrozDesc.setFont(fuenteDescripciones);
         arrozDesc.setForeground(Color.WHITE);
-        gbc.gridx = 2;
-        gbc.gridy = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 3;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.weightx = 0.5;
@@ -153,6 +157,7 @@ public class LowCost_ClienteEsporadico extends JDialog {
         panelSur.setBackground(fondoEmpresaLelia);
 
         mensajeCancelar = new JLabel("Para cancelar el pedido pulse el siguiente botón: ");
+        mensajeCancelar.setFont(new Font("Maiandra GD", Font.BOLD, 20));
         cancelar = new JButton("Cancelar");
         panelSur.add(mensajeCancelar);
         panelSur.add(cancelar);
@@ -166,9 +171,8 @@ public class LowCost_ClienteEsporadico extends JDialog {
         LowCost_ClienteEsporadico lc_ce = new LowCost_ClienteEsporadico();
         lc_ce.setTitle("LeliaMerca");
         lc_ce.setVisible(true);
-        lc_ce.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        lc_ce.setSize(screenSize.width, screenSize.height);
+        lc_ce.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        lc_ce.setSize(1800, 1000);
     }
 
     private Image cargarImagen(String ruta, int ancho, int alto) {
