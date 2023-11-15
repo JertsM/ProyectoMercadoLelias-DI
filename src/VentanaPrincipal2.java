@@ -41,9 +41,7 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
 
     //Panel Inferior
     JLabel labelTipoUsuario;
-    JTextField cuadroUsuarios;
     JLabel labelTipoServicio;
-    JTextField cuadroServicios;
     JButton btnAceptar;
 
     // Fuentes y Backgrounds
@@ -63,7 +61,6 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         c = getContentPane();
         panel = new JPanel(layout);
         panel.setBackground(fondoEmpresaLelia);
-
 
         // Panel superior
         panelSuperior = new JPanel(new GridBagLayout());  // Usar un GridBagLayout específico para panelSuperior
@@ -178,17 +175,12 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         labelTipoUsuario = new JLabel("Escoja el tipo de usuario:");
         labelTipoUsuario.setForeground(Color.WHITE);
         labelTipoUsuario.setFont(fuenteCabeceraMenor);
-        cuadroUsuarios = new JTextField(12);
-        cuadroUsuarios.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         panelPrimerBloque.add(labelTipoUsuario);
-        panelPrimerBloque.add(cuadroUsuarios);
         panelPrimerBloque.add(tipoUsers);
 
         labelTipoServicio = new JLabel("Escoja el tipo de servicio:");
         labelTipoServicio.setForeground(Color.WHITE);
         labelTipoServicio.setFont(fuenteCabeceraMenor);
-        cuadroServicios = new JTextField(12);
-        cuadroServicios.setBorder(BorderFactory.createLineBorder(Color.WHITE));
 
         panelSegundoBloque = new JPanel();
         panelSegundoBloque.setBackground(fondoPagina);
@@ -196,7 +188,6 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         btnAceptar.addActionListener(this);
 
         panelSegundoBloque.add(labelTipoServicio);
-        panelSegundoBloque.add(cuadroServicios);
         panelSegundoBloque.add(tipoServices);
         panelSegundoBloque.add(btnAceptar);
 
