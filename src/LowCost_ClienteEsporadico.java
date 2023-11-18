@@ -1,5 +1,3 @@
-package LowCost;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -36,15 +34,16 @@ public class LowCost_ClienteEsporadico extends JFrame {
     JLabel salmonDesc;
     JLabel vinoDesc;
     JLabel arrozDesc;
+    JLabel fileteDesc;
 
     // Panel inferior
     JLabel mensajeCancelar;
     JButton cancelar;
 
     // Fuentes y backgrounds
-    Color fondoEmpresaLelia = new Color(69, 110, 200);
-    Color fondoPagina = new Color(6, 51, 170);
-    Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 80);
+    Color fondoEmpresaLelia = new Color(113, 212, 93);
+    Color fondoPagina = new Color(174, 250, 132);
+    Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 40);
     Font fuenteDescripciones = new Font("Maiandra GD", Font.BOLD, 30);
 
 
@@ -69,7 +68,7 @@ public class LowCost_ClienteEsporadico extends JFrame {
         gbc.weightx = 0.5;
         gbc.weighty = 0.5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        Image salmon = cargarImagen("./src/LowCost/salmon.jpg", 200, 250);
+        Image salmon = cargarImagen("./src/LowCost/salmon.png", 150, 200);
         assert salmon != null;
         JLabel lSalmon = new JLabel(new ImageIcon(salmon));
         firtsImg.add(lSalmon);
@@ -100,7 +99,7 @@ public class LowCost_ClienteEsporadico extends JFrame {
         gbc.weightx = 0.5;
         gbc.weighty = 0.5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        Image vinoBlanco = cargarImagen("./src/LowCost/vino.jpg", 200, 250);
+        Image vinoBlanco = cargarImagen("./src/LowCost/vino.png", 150, 200);
         assert vinoBlanco != null;
         JLabel lVino = new JLabel(new ImageIcon(vinoBlanco));
         secondImg.add(lVino);
@@ -131,7 +130,7 @@ public class LowCost_ClienteEsporadico extends JFrame {
         gbc.weightx = 0.5;
         gbc.weighty = 0.5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        Image arroz = cargarImagen("./src/LowCost/arroz.jpg", 200, 250);
+        Image arroz = cargarImagen("./src/LowCost/arroz.png", 150, 200);
         assert arroz != null;
         JLabel lArroz = new JLabel(new ImageIcon(arroz));
         thirdImg.add(lArroz);
@@ -152,6 +151,37 @@ public class LowCost_ClienteEsporadico extends JFrame {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         thirdDesc.add(arrozDesc);
         panelCentral.add(thirdDesc, gbc);
+
+        fourthImg = new JPanel();
+        fourthImg.setBackground(fondoEmpresaLelia);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        Image filete = cargarImagen("./src/LowCost/filete.png", 150, 200);
+        assert filete != null;
+        JLabel lFilete = new JLabel(new ImageIcon(filete));
+        fourthImg.add(lFilete);
+        panelCentral.add(fourthImg, gbc);
+
+        fourthDesc = new JPanel();
+        fourthDesc.setBackground(fondoEmpresaLelia);
+        gbc = new GridBagConstraints();
+        fileteDesc = new JLabel("Filetes de pollo ELPOZO: 4€");
+        fileteDesc.setFont(fuenteDescripciones);
+        fileteDesc.setForeground(Color.WHITE);
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        fourthDesc.add(fileteDesc);
+        panelCentral.add(fourthDesc, gbc);
 
         panelSur = new JPanel(new GridLayout());
         panelSur.setBackground(fondoEmpresaLelia);

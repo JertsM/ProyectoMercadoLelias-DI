@@ -1,10 +1,3 @@
-import Hipermercado.Hipermercado_ClienteClub;
-import Hipermercado.Hipermercado_ClienteEsporadico;
-import Hipermercado.Hipermercado_ClientePremium;
-import LowCost.LowCost_ClienteClub;
-import LowCost.LowCost_ClienteEsporadico;
-import LowCost.LowCost_ClientePremium;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +8,6 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
 
 public class VentanaPrincipal2 extends JFrame implements ActionListener {
 
@@ -26,6 +18,7 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     GridBagLayout layout = new GridBagLayout();
     FlowLayout layoutFlow = new FlowLayout(FlowLayout.CENTER, 0, 0);
 
+    // Paneles
     JPanel panel;
     JPanel panelSuperior;
     JPanel panelTitulo;
@@ -36,11 +29,16 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     JPanel panelSegundoBloque;
     JPanel panelTercerBloque;
 
+    // Botones Centrales
+    JButton btnLowCost;
+    JButton btnHipermercado;
+    JButton btnGourmet;
     JLabel cabecera;
     JLabel user;
 
     JTextField cuadroUser;
     JButton btnUser;
+    JButton boton;
 
     //Panel Inferior
     JLabel labelTipoUsuario;
@@ -50,8 +48,8 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     // Fuentes y Backgrounds
     Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 40);
     Font fuenteCabeceraMenor = new Font("Maiandra GD", Font.BOLD, 17);
-    Color fondoEmpresaLelia = new Color(69, 110, 218);
-    Color fondoPagina = new Color(6, 51, 170);
+    Color fondoEmpresaLelia = new Color(113, 212, 93);
+    Color fondoPagina = new Color(174, 250, 132);
 
     //  Arrays de opciones
     String [] users = {"Escoja cliente...", "Cliente esporádico", "Cliente Club", "Cliente Premium"};
@@ -94,7 +92,7 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
 
         panelUsuario = new JPanel(new GridBagLayout());  // Usar un GridBagLayout específico para panelUsuario
         panelUsuario.setBackground(fondoEmpresaLelia);
-        user = new JLabel("Usuario:");
+        user = new JLabel("Introduzca un nombre de usuario:");
         user.setForeground(Color.WHITE);
         user.setFont(fuenteCabeceraMenor);
         gbc.gridx = 0;
@@ -139,12 +137,6 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         assert imagenLC != null;
         JLabel etiquetaLC = new JLabel(new ImageIcon(imagenLC));
         etiquetaLC.setBorder(BorderFactory.createEmptyBorder());// Elimina los márgenes
-        etiquetaLC.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                abrirNuevaVentana("cenaLowCost.jpg");
-            }
-        });
 
         panelCentral.add(Box.createRigidArea(new Dimension(0, 50)));
 
@@ -160,9 +152,21 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         JLabel etiquetaGM = new JLabel(new ImageIcon(imagenGM));
         etiquetaGM.setBorder(BorderFactory.createEmptyBorder()); // Elimina los márgenes
 
+        btnLowCost = new JButton("Acceder a LowCost");
+        btnHipermercado = new JButton("Acceder a Hipermercado");
+        btnGourmet = new JButton("Acceder a Gourmet");
+
+        btnLowCost.addActionListener(this);
+        btnHipermercado.addActionListener(this);
+        btnGourmet.addActionListener(this);
+
         panelCentral.add(etiquetaLC, BorderLayout.WEST);
         panelCentral.add(etiquetaHM, BorderLayout.CENTER);
         panelCentral.add(etiquetaGM, BorderLayout.EAST);
+
+        panelCentral.add(btnLowCost, BorderLayout.WEST);
+        panelCentral.add(btnHipermercado, BorderLayout.CENTER);
+        panelCentral.add(btnGourmet, BorderLayout.EAST);
 
         // Panel Inferior
         panelInferior = new JPanel(){
@@ -174,34 +178,6 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
                 g.fillRect(0, 0, getWidth(), getHeight());
             }
         };
-        panelInferior.setLayout(new GridLayout(2, 1));
-        panelInferior.setBackground(fondoPagina);
-        panelInferior.setOpaque(true);
-
-        panelPrimerBloque = new JPanel();
-        panelPrimerBloque.setBackground(fondoPagina);
-
-        labelTipoUsuario = new JLabel("Escoja el tipo de usuario:");
-        labelTipoUsuario.setForeground(Color.WHITE);
-        labelTipoUsuario.setFont(fuenteCabeceraMenor);
-        panelPrimerBloque.add(labelTipoUsuario);
-        panelPrimerBloque.add(tipoUsers);
-
-        labelTipoServicio = new JLabel("Escoja el tipo de servicio:");
-        labelTipoServicio.setForeground(Color.WHITE);
-        labelTipoServicio.setFont(fuenteCabeceraMenor);
-
-        panelSegundoBloque = new JPanel();
-        panelSegundoBloque.setBackground(fondoPagina);
-        btnAceptar = new JButton("Aceptar");
-        btnAceptar.addActionListener(this);
-
-        panelSegundoBloque.add(labelTipoServicio);
-        panelSegundoBloque.add(tipoServices);
-        panelSegundoBloque.add(btnAceptar);
-
-        panelInferior.add(panelPrimerBloque);
-        panelInferior.add(panelSegundoBloque);
 
         // Agregar paneles al contenedor principal
         c.add(panelSuperior, BorderLayout.NORTH);
@@ -209,24 +185,15 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         c.add(panelInferior, BorderLayout.SOUTH);
     }
 
-    private void abrirNuevaVentana(String nombreImagen) {
-        try {
-            File imagenFile = new File(nombreImagen);
-
-            if (imagenFile.exists()) {
-                Desktop.getDesktop().browse(imagenFile.toURI());
-            } else {
-                System.out.println("La imagen no existe: " + nombreImagen);
-            }
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
     private Image cargarImagen(String ruta, int ancho) {
         try {
             BufferedImage imagen = ImageIO.read(new File(ruta));
-            Image imagenEscalada = imagen.getScaledInstance(ancho, 400, Image.SCALE_SMOOTH);
-            return new ImageIcon(imagenEscalada).getImage();
+            if(imagen != null){
+                Image imagenEscalada = imagen.getScaledInstance(ancho, 400, Image.SCALE_SMOOTH);
+                return new ImageIcon(imagenEscalada).getImage();
+            }else{
+                return null;
+            }
         } catch (IOException e) {
             e.printStackTrace();
             return null;
@@ -237,48 +204,24 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         VentanaPrincipal2 mv = new VentanaPrincipal2();
         mv.setVisible(true);
         mv.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        mv.setSize(1800, 1000);
+        mv.setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String users = tipoUsers.getSelectedItem().toString();
-        String services = tipoServices.getSelectedItem().toString();
-
-        if(e.getSource() == btnAceptar){
-            // Condicionales de Low Cost
-            if(users.equalsIgnoreCase("Cliente esporádico") && services.equalsIgnoreCase("Low Cost")){
-                LowCost_ClienteEsporadico vLow = new LowCost_ClienteEsporadico();
-            }
-            if(users.equalsIgnoreCase("Cliente Club") && services.equalsIgnoreCase("Low Cost")){
-                LowCost_ClienteClub vLow = new LowCost_ClienteClub();
-            }
-            if(users.equalsIgnoreCase("Cliente Premium") && services.equalsIgnoreCase("Low Cost")){
-                LowCost_ClientePremium vLow = new LowCost_ClientePremium();
-            }
-
-            // Condicionales de Hipermercados
-            if(users.equalsIgnoreCase("Cliente esporádico") && services.equalsIgnoreCase("Hipermercado")){
-                Hipermercado_ClienteEsporadico vLow = new Hipermercado_ClienteEsporadico();
-            }
-            if(users.equalsIgnoreCase("Cliente Club") && services.equalsIgnoreCase("Hipermercado")){
-                Hipermercado_ClienteClub vLow = new Hipermercado_ClienteClub();
-            }
-            if(users.equalsIgnoreCase("Cliente Premium") && services.equalsIgnoreCase("Hipermercado")){
-                Hipermercado_ClientePremium vLow = new Hipermercado_ClientePremium();
-            }
-
-            // Condicionales de Gourmet
-            if(users.equalsIgnoreCase("Cliente esporádico") && services.equalsIgnoreCase("Gourmet")){
-                Hipermercado_ClienteEsporadico vLow = new Hipermercado_ClienteEsporadico();
-            }
-            if(users.equalsIgnoreCase("Cliente Club") && services.equalsIgnoreCase("Gourmet")){
-                Hipermercado_ClienteClub vLow = new Hipermercado_ClienteClub();
-            }
-            if(users.equalsIgnoreCase("Cliente Premium") && services.equalsIgnoreCase("Gourmet")){
-                Hipermercado_ClientePremium vLow = new Hipermercado_ClientePremium();
-            }
+        if(e.getSource() == btnLowCost){
+            LowCost_ClienteEsporadico cliente = new LowCost_ClienteEsporadico();
+            cliente.setVisible(true);
+            cliente.setExtendedState(Frame.MAXIMIZED_BOTH);
+        }
+        if(e.getSource() == btnHipermercado){
+            Hipermercado_ClienteEsporadico cliente = new Hipermercado_ClienteEsporadico();
+            cliente.setVisible(true);
+        }
+        if(e.getSource() == btnGourmet){
+            Gourmet_ClienteEsporadico cliente = new Gourmet_ClienteEsporadico();
+            cliente.setVisible(true);
+            cliente.setExtendedState(Frame.MAXIMIZED_BOTH);
         }
     }
 }
