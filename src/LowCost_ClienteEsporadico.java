@@ -1,11 +1,13 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class LowCost_ClienteEsporadico extends JFrame {
+public class LowCost_ClienteEsporadico extends JFrame implements ActionListener {
 
     // Contenedor
     Container c;
@@ -189,6 +191,7 @@ public class LowCost_ClienteEsporadico extends JFrame {
         mensajeCancelar = new JLabel("Para cancelar el pedido pulse el siguiente botón: ");
         mensajeCancelar.setFont(new Font("Maiandra GD", Font.BOLD, 20));
         cancelar = new JButton("Cancelar");
+        cancelar.addActionListener(this);
         panelSur.add(mensajeCancelar);
         panelSur.add(cancelar);
 
@@ -213,6 +216,13 @@ public class LowCost_ClienteEsporadico extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == cancelar){
+            dispose();
         }
     }
 }
