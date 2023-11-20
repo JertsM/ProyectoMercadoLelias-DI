@@ -52,6 +52,7 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
     Color fondoPagina = new Color(196, 232, 235);
     Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 40);
     Font fuenteDescripciones = new Font("Maiandra GD", Font.BOLD, 30);
+
     public Hipermercado_ClienteEsporadico() {
 
         c = getContentPane();
@@ -239,14 +240,6 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
             e.printStackTrace();
             return null;
         }
-    }
-
-    public static void main(String[] args) {
-        Hipermercado_ClienteEsporadico lc_hm = new Hipermercado_ClienteEsporadico();
-        lc_hm.setTitle("LeliaMerca");
-        lc_hm.setVisible(true);
-        lc_hm.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        lc_hm.setSize(1800, 1000);
     }
 
     @Override
