@@ -40,11 +40,6 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     JButton btnUser;
     JButton boton;
 
-    //Panel Inferior
-    JLabel labelTipoUsuario;
-    JLabel labelTipoServicio;
-    JButton btnAceptar;
-
     // Fuentes y Backgrounds
     Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 40);
     Font fuenteCabeceraMenor = new Font("Maiandra GD", Font.BOLD, 17);
@@ -89,7 +84,6 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         gbcTitulo.anchor = GridBagConstraints.CENTER;
         panelSuperior.add(panelTitulo, gbcTitulo);
 
-
         panelUsuario = new JPanel(new GridBagLayout());  // Usar un GridBagLayout específico para panelUsuario
         panelUsuario.setBackground(fondoEmpresaLelia);
         user = new JLabel("Introduzca un nombre de usuario:");
@@ -107,6 +101,7 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         panelUsuario.add(cuadroUser, gbc);
 
         btnUser = new JButton("Entrar");
+        btnUser.addActionListener(this);
         gbc.gridx = 2;
         gbc.gridy = 0;
         gbc.anchor = GridBagConstraints.WEST;
@@ -168,7 +163,6 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         panelCentral.add(btnHipermercado, BorderLayout.CENTER);
         panelCentral.add(btnGourmet, BorderLayout.EAST);
 
-        // Panel Inferior
         panelInferior = new JPanel(){
                 @Override
                 protected void paintComponent(Graphics g) {
@@ -209,11 +203,12 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == btnLowCost){
-            LowCost_ClienteEsporadico cliente = new LowCost_ClienteEsporadico();
-            cliente.setVisible(true);
-            cliente.setExtendedState(Frame.MAXIMIZED_BOTH);
-        }
+            if(e.getSource() == btnLowCost) {
+                LowCost_ClienteEsporadico cliente = new LowCost_ClienteEsporadico();
+                cliente.setVisible(true);
+                cliente.setExtendedState(Frame.MAXIMIZED_BOTH);
+            }
+
         if(e.getSource() == btnHipermercado){
             Hipermercado_ClienteEsporadico cliente = new Hipermercado_ClienteEsporadico();
             cliente.setVisible(true);

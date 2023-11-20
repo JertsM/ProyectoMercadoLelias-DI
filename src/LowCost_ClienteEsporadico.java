@@ -49,12 +49,13 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
     Font fuenteDescripciones = new Font("Maiandra GD", Font.BOLD, 30);
 
 
-    public LowCost_ClienteEsporadico(){
+    public LowCost_ClienteEsporadico() {
+
         c = getContentPane();
         panelNorte = new JPanel(new GridLayout());
         panelNorte.setBackground(fondoPagina);
 
-        cabecera = new JLabel("LeliaMerca: Low Cost - Cliente esporádico");
+        cabecera = new JLabel("LeliaMerca: Low Cost -");
         cabecera.setForeground(Color.WHITE);
         cabecera.setFont(fuenteCabecera);
         panelNorte.add(cabecera);
@@ -200,14 +201,6 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         c.add(panelSur, BorderLayout.SOUTH);
     }
 
-    public static void main(String[] args) {
-        LowCost_ClienteEsporadico lc_ce = new LowCost_ClienteEsporadico();
-        lc_ce.setTitle("LeliaMerca");
-        lc_ce.setVisible(true);
-        lc_ce.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        lc_ce.setSize(1800, 1000);
-    }
-
     private Image cargarImagen(String ruta, int ancho, int alto) {
         try {
             BufferedImage imagen = ImageIO.read(new File(ruta));
@@ -217,6 +210,14 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static void main(String[] args) {
+        LowCost_ClienteEsporadico lc_ce = new LowCost_ClienteEsporadico();
+        lc_ce.setTitle("LeliaMerca");
+        lc_ce.setVisible(true);
+        lc_ce.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        lc_ce.setSize(1800, 1000);
     }
 
     @Override
