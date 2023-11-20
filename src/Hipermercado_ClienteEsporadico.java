@@ -84,7 +84,7 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
         firstDesc = new JPanel();
         firstDesc.setBackground(fondoEmpresaLelia);
         gbc = new GridBagConstraints();
-        salmonDesc = new JLabel("Salmón Skandia: 2.5€");
+        salmonDesc = new JLabel("Salmón Skandia: 5€");
         salmonDesc.setFont(fuenteDescripciones);
         salmonDesc.setForeground(Color.WHITE);
         gbc.gridx = 0;
@@ -115,7 +115,7 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
         secondDesc = new JPanel();
         gbc = new GridBagConstraints();
         secondDesc.setBackground(fondoEmpresaLelia);
-        vinoDesc = new JLabel("Vino Blanco 'Don Bernandino': 3€");
+        vinoDesc = new JLabel("Vino Blanco 'Don Bernandino': 6.5€");
         vinoDesc.setFont(fuenteDescripciones);
         vinoDesc.setForeground(Color.WHITE);
         gbc.gridx = 1;
@@ -146,7 +146,7 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
         thirdDesc = new JPanel();
         thirdDesc.setBackground(fondoEmpresaLelia);
         gbc = new GridBagConstraints();
-        arrozDesc = new JLabel("Arroz SOS: 2€");
+        arrozDesc = new JLabel("Arroz SOS: 4€");
         arrozDesc.setFont(fuenteDescripciones);
         arrozDesc.setForeground(Color.WHITE);
         gbc.gridx = 0;
@@ -177,7 +177,7 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
         fourthDesc = new JPanel();
         fourthDesc.setBackground(fondoEmpresaLelia);
         gbc = new GridBagConstraints();
-        fileteDesc = new JLabel("Filetes de pollo ELPOZO: 4€");
+        fileteDesc = new JLabel("Filetes de pollo ELPOZO: 3€");
         fileteDesc.setFont(fuenteDescripciones);
         fileteDesc.setForeground(Color.WHITE);
         gbc.gridx = 1;
@@ -206,7 +206,7 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
         gbc.gridy = -1;
         gbc.gridheight = -1;
         gbc.gridwidth = 2;
-        gbc.weightx = 1;
+        gbc.weightx = 0.5;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
         panelPrecio.add(facturaDesc);
@@ -229,6 +229,14 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
         c.add(panelNorte, BorderLayout.NORTH);
         c.add(panelCentral, BorderLayout.CENTER);
         c.add(panelSur, BorderLayout.SOUTH);
+    }
+
+    public static void main(String[] args) {
+        Hipermercado_ClienteEsporadico lc_hm = new Hipermercado_ClienteEsporadico();
+        lc_hm.setTitle("LeliaMerca");
+        lc_hm.setVisible(true);
+        lc_hm.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        lc_hm.setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 
     private Image cargarImagen(String ruta, int ancho, int alto) {
