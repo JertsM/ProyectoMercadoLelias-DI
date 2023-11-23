@@ -212,6 +212,7 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         if(e.getSource() == btnHipermercado){
             Hipermercado_ClienteEsporadico cliente = new Hipermercado_ClienteEsporadico();
             cliente.setVisible(true);
+            cliente.setExtendedState(Frame.MAXIMIZED_BOTH);
         }
         if(e.getSource() == btnGourmet){
             Gourmet_ClienteEsporadico cliente = new Gourmet_ClienteEsporadico();

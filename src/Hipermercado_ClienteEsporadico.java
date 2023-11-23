@@ -242,6 +242,14 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
         }
     }
 
+    public static void main(String[] args) {
+        Hipermercado_ClienteEsporadico hm_ce = new Hipermercado_ClienteEsporadico();
+        hm_ce.setTitle("LeliaMerca");
+        hm_ce.setVisible(true);
+        hm_ce.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        hm_ce.setSize(1800, 1000);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == cancelar){
