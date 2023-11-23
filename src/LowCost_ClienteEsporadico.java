@@ -58,7 +58,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         panelNorte = new JPanel(new GridLayout());
         panelNorte.setBackground(fondoPagina);
 
-        cabecera = new JLabel("LeliaMerca: Low Cost -");
+        cabecera = new JLabel("LeliaMerca: Low Cost - Ofertas");
         cabecera.setForeground(Color.WHITE);
         cabecera.setFont(fuenteCabecera);
         panelNorte.add(cabecera);

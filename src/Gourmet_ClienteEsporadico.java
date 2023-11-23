@@ -58,7 +58,7 @@ public class Gourmet_ClienteEsporadico extends JFrame implements ActionListener 
         panelNorte = new JPanel(new GridLayout());
         panelNorte.setBackground(fondoEmpresaLelia);
 
-        cabecera = new JLabel("LeliaMerca: Low Cost - Cliente esporádico");
+        cabecera = new JLabel("LeliaMerca: Low Cost - Ofertas");
         cabecera.setForeground(new Color(234, 190, 63));
         cabecera.setFont(fuenteCabecera);
         panelNorte.add(cabecera);

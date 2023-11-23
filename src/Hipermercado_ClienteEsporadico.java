@@ -59,7 +59,7 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
         panelNorte = new JPanel(new GridLayout());
         panelNorte.setBackground(fondoPagina);
 
-        cabecera = new JLabel("LeliaMerca: Low Cost - Cliente esporádico");
+        cabecera = new JLabel("LeliaMerca: Low Cost - Ofertas");
         cabecera.setForeground(Color.WHITE);
         cabecera.setFont(fuenteCabecera);
         panelNorte.add(cabecera);
