@@ -25,6 +25,8 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     JPanel panelUsuario;
     JPanel panelCentral;
     JPanel panelInferior;
+    JPanel panelImagenes;
+    JPanel panelBotones;
     JPanel panelPrimerBloque;
     JPanel panelSegundoBloque;
     JPanel panelTercerBloque;
@@ -35,6 +37,9 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
     JButton btnGourmet;
     JLabel cabecera;
     JLabel user;
+    JLabel etiquetaLC;
+    JLabel etiquetaHM;
+    JLabel etiquetaGM;
 
     JTextField cuadroUser;
     JButton btnUser;
@@ -59,13 +64,12 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         panel.setBackground(fondoEmpresaLelia);
 
         // Panel superior
-        panelSuperior = new JPanel(new GridBagLayout());  // Usar un GridBagLayout específico para panelSuperior
+        panelSuperior = new JPanel(new GridBagLayout());
         panelSuperior.setBackground(fondoEmpresaLelia);
         panelTitulo = new JPanel(){
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // Dibuja el fondo directamente en el JPanel
                 g.setColor(fondoEmpresaLelia);
                 g.fillRect(0, 0, getWidth(), getHeight());
             }
@@ -84,7 +88,7 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         gbcTitulo.anchor = GridBagConstraints.CENTER;
         panelSuperior.add(panelTitulo, gbcTitulo);
 
-        panelUsuario = new JPanel(new GridBagLayout());  // Usar un GridBagLayout específico para panelUsuario
+        panelUsuario = new JPanel(new GridBagLayout());
         panelUsuario.setBackground(fondoEmpresaLelia);
         user = new JLabel("Introduzca un nombre de usuario:");
         user.setForeground(Color.WHITE);
@@ -114,54 +118,54 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         panelSuperior.add(panelUsuario, gbcUsuario);
 
         // Panel central
-        panelCentral = new JPanel(layoutFlow){
-                @Override
-                protected void paintComponent(Graphics g) {
+        panelCentral = new JPanel();
+        panelCentral = new JPanel(){
+            @Override
+            protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // Dibuja el fondo directamente en el JPanel
                 g.setColor(fondoPagina);
                 g.fillRect(0, 0, getWidth(), getHeight());
             }
         };
         panelCentral.setBackground(fondoPagina);
 
-        // Agregar una separación entre la parte superior y las imágenes
-        panelCentral.add(Box.createRigidArea(new Dimension(0, 50)));
-
         Image imagenLC = cargarImagen("./cenaLowCost.jpg", 492);
         assert imagenLC != null;
-        JLabel etiquetaLC = new JLabel(new ImageIcon(imagenLC));
-        etiquetaLC.setBorder(BorderFactory.createEmptyBorder());// Elimina los márgenes
-
-        panelCentral.add(Box.createRigidArea(new Dimension(0, 50)));
+        etiquetaLC = new JLabel(new ImageIcon(imagenLC));
+        etiquetaLC.setBorder(BorderFactory.createEmptyBorder());
 
         Image imagenHM = cargarImagen("./cesta.jpg", 530);
         assert imagenHM != null;
-        JLabel etiquetaHM = new JLabel(new ImageIcon(imagenHM));
-        etiquetaHM.setBorder(BorderFactory.createEmptyBorder()); // Elimina los márgenes
-
-        panelCentral.add(Box.createRigidArea(new Dimension(0, 50)));
+        etiquetaHM = new JLabel(new ImageIcon(imagenHM));
+        etiquetaHM.setBorder(BorderFactory.createEmptyBorder());
 
         Image imagenGM = cargarImagen("./cenaGourmet.jpg", 500);
         assert imagenGM != null;
-        JLabel etiquetaGM = new JLabel(new ImageIcon(imagenGM));
-        etiquetaGM.setBorder(BorderFactory.createEmptyBorder()); // Elimina los márgenes
+        etiquetaGM = new JLabel(new ImageIcon(imagenGM));
+        etiquetaGM.setBorder(BorderFactory.createEmptyBorder());
 
-        btnLowCost = new JButton("Acceder a LowCost");
-        btnHipermercado = new JButton("Acceder a Hipermercado");
-        btnGourmet = new JButton("Acceder a Gourmet");
+        panelImagenes = new JPanel();
+
+        panelImagenes.add(etiquetaLC);
+        panelImagenes.add(etiquetaHM);
+        panelImagenes.add(etiquetaGM);
+
+        panelCentral.add(panelImagenes, BorderLayout.CENTER);
+
+        btnLowCost = new JButton("Acceder a Low Cost");
+        btnHipermercado = new JButton("Hipermercado");
+        btnGourmet = new JButton("Gourmet");
 
         btnLowCost.addActionListener(this);
         btnHipermercado.addActionListener(this);
         btnGourmet.addActionListener(this);
 
-        panelCentral.add(etiquetaLC, BorderLayout.WEST);
-        panelCentral.add(etiquetaHM, BorderLayout.CENTER);
-        panelCentral.add(etiquetaGM, BorderLayout.EAST);
+        panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        panelBotones.add(btnLowCost);
+        panelBotones.add(btnHipermercado);
+        panelBotones.add(btnGourmet);
 
-        panelCentral.add(btnLowCost, BorderLayout.WEST);
-        panelCentral.add(btnHipermercado, BorderLayout.CENTER);
-        panelCentral.add(btnGourmet, BorderLayout.EAST);
+        panelCentral.add(panelBotones, BorderLayout.SOUTH);
 
         panelInferior = new JPanel(){
                 @Override
@@ -198,7 +202,7 @@ public class VentanaPrincipal2 extends JFrame implements ActionListener {
         VentanaPrincipal2 mv = new VentanaPrincipal2();
         mv.setVisible(true);
         mv.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        mv.setExtendedState(Frame.MAXIMIZED_BOTH);
+        mv.setSize(1550, 1200);
     }
 
     @Override

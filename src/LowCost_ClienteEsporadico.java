@@ -28,6 +28,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
     JPanel thirdDesc;
     JPanel fourthImg;
     JPanel fourthDesc;
+    JPanel panelPrecio;
 
     // Panel superior
     JLabel cabecera;
@@ -37,6 +38,8 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
     JLabel vinoDesc;
     JLabel arrozDesc;
     JLabel fileteDesc;
+    JLabel facturaDesc;
+    JTextArea area;
 
     // Panel inferior
     JLabel mensajeCancelar;
@@ -55,7 +58,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         panelNorte = new JPanel(new GridLayout());
         panelNorte.setBackground(fondoPagina);
 
-        cabecera = new JLabel("LeliaMerca: Low Cost -");
+        cabecera = new JLabel("LeliaMerca: Low Cost - Ofertas");
         cabecera.setForeground(Color.WHITE);
         cabecera.setFont(fuenteCabecera);
         panelNorte.add(cabecera);
@@ -186,6 +189,29 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         fourthDesc.add(fileteDesc);
         panelCentral.add(fourthDesc, gbc);
 
+        panelPrecio = new JPanel();
+        gbc = new GridBagConstraints();
+        facturaDesc = new JLabel("Factura:");
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        facturaDesc.setFont(new Font("Maiandra GB", Font.BOLD, 20));
+        gbc = new GridBagConstraints();
+        area = new JTextArea();
+        gbc.gridx = 2;
+        gbc.gridy = -1;
+        gbc.gridheight = -1;
+        gbc.gridwidth = 2;
+        gbc.weightx = 0.5;
+        gbc.weighty = 1;
+        gbc.fill = GridBagConstraints.BOTH;
+        panelPrecio.add(facturaDesc);
+        panelPrecio.add(area);
+        panelCentral.add(panelPrecio, gbc);
+
         panelSur = new JPanel(new GridLayout());
         panelSur.setBackground(fondoEmpresaLelia);
 
@@ -217,7 +243,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         lc_ce.setTitle("LeliaMerca");
         lc_ce.setVisible(true);
         lc_ce.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        lc_ce.setSize(1800, 1000);
+        lc_ce.setExtendedState(Frame.MAXIMIZED_BOTH);
     }
 
     @Override
