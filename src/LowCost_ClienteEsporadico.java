@@ -8,6 +8,12 @@ import java.io.File;
 import java.io.IOException;
 
 public class LowCost_ClienteEsporadico extends JFrame implements ActionListener {
+
+    String[] productos = {"Salmón Skandia", "Vino Blanco 'Don Bernandino'", "Arroz SOS", "Filetes de pollo ELPOZO"};
+    double[] precios = {2.5, 3, 2, 4};
+    Image[] imagenes = {cargarImagen("./src/LowCost/salmon.png", 150, 200), cargarImagen("./src/LowCost/vino.png", 150, 200), cargarImagen("./src/LowCost/arroz.png", 150, 200), cargarImagen("./src/LowCost/filete.png", 150, 200)};
+    JButton[] botonesComprar = new JButton[3];
+    double total = 0;
     // Contenedor
     Container c;
 
@@ -51,7 +57,6 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
     Color fondoPagina = new Color(174, 250, 132);
     Font fuenteCabecera = new Font("Maiandra GD", Font.BOLD, 40);
     Font fuenteDescripciones = new Font("Maiandra GD", Font.BOLD, 30);
-
 
     public LowCost_ClienteEsporadico() {
 
@@ -98,7 +103,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
 
         gbc = new GridBagConstraints();
         comprarProd = new JButton("Comprar");
-        comprarProd.addActionListener(new ComprarButtList("Salmón Skandia", 2.5, 2.5));
+        comprarProd.addActionListener(this);
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridheight = 1;
@@ -141,8 +146,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
 
         gbc = new GridBagConstraints();
         comprarProd = new JButton("Comprar");
-
-        comprarProd.addActionListener(new ComprarButtList("Vino Blanco 'Don Bernandino", 3, 3));
+        comprarProd.addActionListener(this);
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.gridheight = 1;
@@ -185,7 +189,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
 
         gbc = new GridBagConstraints();
         comprarProd = new JButton("Comprar");
-        comprarProd.addActionListener(new ComprarButtList("Arroz SOS", 2, 2));
+        comprarProd.addActionListener(this);
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridheight = 1;
@@ -228,7 +232,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
 
         gbc = new GridBagConstraints();
         comprarProd = new JButton("Comprar");
-        comprarProd.addActionListener(new ComprarButtList("Filetes de pollo ELPOZO", 4, 4));
+        comprarProd.addActionListener(this);
         gbc.gridx = 1;
         gbc.gridy = 5;
         gbc.gridheight = 1;
@@ -289,26 +293,6 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         c.add(panelSur, BorderLayout.SOUTH);
     }
 
-    private class ComprarButtList implements ActionListener {
-        private String producto;
-        private double precio;
-        private double total;
-        public ComprarButtList(String producto, double precio, double total) {
-            this.producto = producto;
-            this.precio = precio;
-            this.total = total;
-        }
-        @Override
-        public void actionPerformed(ActionEvent actionEvent) {
-            total += precio;
-            area.append(producto + ": " + precio + "€\n");
-        }
-
-        public double getTotal(){
-            return total;
-        }
-    }
-
     private Image cargarImagen(String ruta, int ancho, int alto) {
         try {
             BufferedImage imagen = ImageIO.read(new File(ruta));
@@ -335,6 +319,27 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
             if(opcion == JOptionPane.YES_OPTION){
                 dispose();
             }
+        }
+
+        for(int i = 0; i < botonesComprar.length; i++){
+            for (int j = 0; j < precios.length; j++){
+                if (botonesComprar[0].isSelected()){
+                    total += precios[0];
+                }
+                if (botonesComprar[1].isSelected()){
+                    total += precios[1];
+                }
+                if (botonesComprar[2].isSelected()){
+                    total += precios[2];
+                }
+                if (botonesComprar[3].isSelected()){
+                    total += precios[3];
+                }
+            }
+
+        }
+        if(e.getSource() == finalizarCompra){
+
         }
     }
 }
