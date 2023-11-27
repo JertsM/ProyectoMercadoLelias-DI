@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class LowCost_ClienteEsporadico extends JFrame implements ActionListener {
-
     // Contenedor
     Container c;
 
@@ -40,7 +39,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
     JLabel fileteDesc;
     JLabel facturaDesc;
     JTextArea area;
-    JButton comprar;
+    JButton finalizarCompra;
     JButton comprarProd;
 
     // Panel inferior
@@ -99,7 +98,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
 
         gbc = new GridBagConstraints();
         comprarProd = new JButton("Comprar");
-        comprarProd.addActionListener(new ComprarButtList("Salmón Skandia", 2.5));
+        comprarProd.addActionListener(new ComprarButtList("Salmón Skandia", 2.5, 2.5));
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.gridheight = 1;
@@ -143,7 +142,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         gbc = new GridBagConstraints();
         comprarProd = new JButton("Comprar");
 
-        comprarProd.addActionListener(new ComprarButtList("Vino Blanco 'Don Bernandino", 3));
+        comprarProd.addActionListener(new ComprarButtList("Vino Blanco 'Don Bernandino", 3, 3));
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.gridheight = 1;
@@ -186,7 +185,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
 
         gbc = new GridBagConstraints();
         comprarProd = new JButton("Comprar");
-        comprarProd.addActionListener(new ComprarButtList("Arroz SOS", 2));
+        comprarProd.addActionListener(new ComprarButtList("Arroz SOS", 2, 2));
         gbc.gridx = 0;
         gbc.gridy = 5;
         gbc.gridheight = 1;
@@ -229,7 +228,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
 
         gbc = new GridBagConstraints();
         comprarProd = new JButton("Comprar");
-        comprarProd.addActionListener(new ComprarButtList("Filetes de pollo ELPOZO", 4));
+        comprarProd.addActionListener(new ComprarButtList("Filetes de pollo ELPOZO", 4, 4));
         gbc.gridx = 1;
         gbc.gridy = 5;
         gbc.gridheight = 1;
@@ -260,8 +259,8 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
 
-        comprar = new JButton("Finalizar compra");
-        comprar.addActionListener(this);
+        finalizarCompra = new JButton("Finalizar compra");
+        finalizarCompra.addActionListener(this);
         gbc.gridx = 2;
         gbc.gridy = 1;
         gbc.gridheight = 1;
@@ -272,7 +271,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
 
         panelPrecio.add(facturaDesc);
         panelPrecio.add(area);
-        panelPrecio.add(comprar, gbc);
+        panelPrecio.add(finalizarCompra, gbc);
         panelCentral.add(panelPrecio, gbc);
 
         panelSur = new JPanel(new GridLayout());
@@ -294,11 +293,10 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         private String producto;
         private double precio;
         private double total;
-
-        public ComprarButtList(String producto, double precio) {
+        public ComprarButtList(String producto, double precio, double total) {
             this.producto = producto;
             this.precio = precio;
-            this.total = 0;
+            this.total = total;
         }
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
