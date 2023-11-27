@@ -250,7 +250,10 @@ public class Gourmet_ClienteEsporadico extends JFrame implements ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == cancelar){
-            dispose();
+            int opcion = JOptionPane.showConfirmDialog(Gourmet_ClienteEsporadico.this, "¿Está seguro de que desea cancelar la compra?", "Menú de salida de Gourmet", JOptionPane.YES_NO_OPTION);
+            if(opcion == JOptionPane.YES_OPTION){
+                dispose();
+            }
         }
     }
 }

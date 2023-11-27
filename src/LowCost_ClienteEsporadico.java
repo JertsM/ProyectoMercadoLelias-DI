@@ -40,6 +40,8 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
     JLabel fileteDesc;
     JLabel facturaDesc;
     JTextArea area;
+    JButton comprar;
+    JButton comprarProd;
 
     // Panel inferior
     JLabel mensajeCancelar;
@@ -94,6 +96,17 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         gbc.weighty = 0.5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         firstDesc.add(salmonDesc);
+
+        gbc = new GridBagConstraints();
+        comprarProd = new JButton("Comprar");
+        comprarProd.addActionListener(new ComprarButtList("Salmón Skandia", 2.5));
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        firstDesc.add(comprarProd);
         panelCentral.add(firstDesc, gbc);
 
         secondImg = new JPanel();
@@ -127,10 +140,23 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         secondDesc.add(vinoDesc);
         panelCentral.add(secondDesc, gbc);
 
+        gbc = new GridBagConstraints();
+        comprarProd = new JButton("Comprar");
+
+        comprarProd.addActionListener(new ComprarButtList("Vino Blanco 'Don Bernandino", 3));
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        secondDesc.add(comprarProd);
+        panelCentral.add(secondDesc, gbc);
+
         thirdImg = new JPanel();
         thirdImg.setBackground(fondoEmpresaLelia);
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.weightx = 0.5;
@@ -149,7 +175,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         arrozDesc.setFont(fuenteDescripciones);
         arrozDesc.setForeground(Color.WHITE);
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.weightx = 0.5;
@@ -158,10 +184,22 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         thirdDesc.add(arrozDesc);
         panelCentral.add(thirdDesc, gbc);
 
+        gbc = new GridBagConstraints();
+        comprarProd = new JButton("Comprar");
+        comprarProd.addActionListener(new ComprarButtList("Arroz SOS", 2));
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        thirdDesc.add(comprarProd);
+        panelCentral.add(thirdDesc, gbc);
+
         fourthImg = new JPanel();
         fourthImg.setBackground(fondoEmpresaLelia);
         gbc.gridx = 1;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.weightx = 0.5;
@@ -180,13 +218,25 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         fileteDesc.setFont(fuenteDescripciones);
         fileteDesc.setForeground(Color.WHITE);
         gbc.gridx = 1;
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridheight = 1;
         gbc.gridwidth = 1;
         gbc.weightx = 0.5;
         gbc.weighty = 0.5;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         fourthDesc.add(fileteDesc);
+        panelCentral.add(fourthDesc, gbc);
+
+        gbc = new GridBagConstraints();
+        comprarProd = new JButton("Comprar");
+        comprarProd.addActionListener(new ComprarButtList("Filetes de pollo ELPOZO", 4));
+        gbc.gridx = 1;
+        gbc.gridy = 5;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        fourthDesc.add(comprarProd);
         panelCentral.add(fourthDesc, gbc);
 
         panelPrecio = new JPanel();
@@ -199,6 +249,7 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         gbc.weightx = 0.5;
         gbc.weighty = 0.5;
         facturaDesc.setFont(new Font("Maiandra GB", Font.BOLD, 20));
+
         gbc = new GridBagConstraints();
         area = new JTextArea();
         gbc.gridx = 2;
@@ -208,8 +259,20 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         gbc.weightx = 0.5;
         gbc.weighty = 1;
         gbc.fill = GridBagConstraints.BOTH;
+
+        comprar = new JButton("Finalizar compra");
+        comprar.addActionListener(this);
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.gridheight = 1;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0.5;
+        gbc.weighty = 0.5;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+
         panelPrecio.add(facturaDesc);
         panelPrecio.add(area);
+        panelPrecio.add(comprar, gbc);
         panelCentral.add(panelPrecio, gbc);
 
         panelSur = new JPanel(new GridLayout());
@@ -225,6 +288,27 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
         c.add(panelNorte, BorderLayout.NORTH);
         c.add(panelCentral, BorderLayout.CENTER);
         c.add(panelSur, BorderLayout.SOUTH);
+    }
+
+    private class ComprarButtList implements ActionListener {
+        private String producto;
+        private double precio;
+        private double total;
+
+        public ComprarButtList(String producto, double precio) {
+            this.producto = producto;
+            this.precio = precio;
+            this.total = 0;
+        }
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            total += precio;
+            area.append(producto + ": " + precio + "€\n");
+        }
+
+        public double getTotal(){
+            return total;
+        }
     }
 
     private Image cargarImagen(String ruta, int ancho, int alto) {
@@ -249,7 +333,10 @@ public class LowCost_ClienteEsporadico extends JFrame implements ActionListener 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == cancelar){
-            dispose();
+            int opcion = JOptionPane.showConfirmDialog(LowCost_ClienteEsporadico.this, "¿Está seguro de que desea cancelar la compra?", "Menú de salida de Low Cost", JOptionPane.YES_NO_OPTION);
+            if(opcion == JOptionPane.YES_OPTION){
+                dispose();
+            }
         }
     }
 }

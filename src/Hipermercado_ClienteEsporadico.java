@@ -250,18 +250,13 @@ public class Hipermercado_ClienteEsporadico extends JFrame implements ActionList
         }
     }
 
-    public static void main(String[] args) {
-        Hipermercado_ClienteEsporadico hm_ce = new Hipermercado_ClienteEsporadico();
-        hm_ce.setTitle("LeliaMerca");
-        hm_ce.setVisible(true);
-        hm_ce.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        hm_ce.setSize(1800, 1000);
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == cancelar){
-            dispose();
+            int opcion = JOptionPane.showConfirmDialog(Hipermercado_ClienteEsporadico.this, "¿Está seguro de que desea cancelar la compra?", "Menú de salida de Hipermercado", JOptionPane.YES_NO_OPTION);
+            if(opcion == JOptionPane.YES_OPTION){
+                dispose();
+            }
+            }
         }
     }
-}
